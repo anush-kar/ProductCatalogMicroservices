@@ -1,0 +1,10 @@
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\model\Product.java
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\service\RatingClient.java
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\ProductServiceApplication.java
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\config\DataInitializer.java
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\service\ProductService.java
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\dto\ProductResponse.java
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\repository\ProductRepository.java
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\config\WebClientConfig.java
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\controller\ProductController.java
+D:\cloud_lab\ProductCatalogMicroservices\product-service\src\main\java\com\example\productservice\dto\RatingDto.java

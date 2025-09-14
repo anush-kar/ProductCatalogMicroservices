@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/PRODUCT_DB
+    username: postgres
+    password: example
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+resilience4j:
+  timelimiter:
+    instances:
+      ratingService:
+        timeout-duration: 2s
+
+logging:
+  level:
+    root: INFO
+
+ratings:
+  base-url: http://rating-service:8081

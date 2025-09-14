@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      retries: 5
+
+  rating-service:
+    build:
+      context: ./rating-service
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/RATING_DB
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: example
+    ports:
+      - "8081:8081"
+    restart: on-failure
+
+  product-service:
+    build:
+      context: ./product-service
+    depends_on:
+      - postgres
+      - rating-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/PRODUCT_DB
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: example
+    ports:
+      - "8080:8080"
+    restart: on-failure
+
+volumes:
+  postgres-data:

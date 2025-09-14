@@ -1,0 +1,5 @@
+com\example\ratingservice\RatingServiceApplication.class
+com\example\ratingservice\controller\RatingController.class
+com\example\ratingservice\repository\RatingRepository.class
+com\example\ratingservice\model\Rating.class
+com\example\ratingservice\config\DataInitializer.class
