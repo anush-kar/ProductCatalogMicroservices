@@ -18,7 +18,6 @@ public class RatingClient {
 
     @TimeLimiter(name = "ratingService", fallbackMethod = "fallbackGetRating")
     public CompletableFuture<RatingDto> getRating(Long productId, boolean delay) {
-        // Run async manually
         return CompletableFuture.supplyAsync(() ->
             webClient.get()
                 .uri(uriBuilder -> uriBuilder
@@ -27,11 +26,10 @@ public class RatingClient {
                         .build(productId))
                 .retrieve()
                 .bodyToMono(RatingDto.class)
-                .block()   // blocking here, but wrapped in async thread
+                .block()
         );
     }
 
-    // ✅ Fallback signature must match params + Throwable
     private CompletableFuture<RatingDto> fallbackGetRating(Long productId, boolean delay, Throwable t) {
         return CompletableFuture.completedFuture(new RatingDto(productId, 0.0, 0));
     }

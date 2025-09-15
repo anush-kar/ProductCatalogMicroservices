@@ -32,6 +32,19 @@ public class ProductService {
                 })
                 .collect(Collectors.toList());
     }
+    
+    public ProductResponse getProductById(Long id, boolean delay) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+
+        RatingDto rating = ratingClient.getRating(id, delay).join();
+        return new ProductResponse(product.getId(), product.getName(), rating);
+    }
+    
+    // ✅ NEW method
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
+    }
 
     private RatingDto defaultRating(Long productId) {
         return new RatingDto(productId, 0.0, 0);

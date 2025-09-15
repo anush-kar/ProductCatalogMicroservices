@@ -27,4 +27,11 @@ public class RatingController {
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.ok(new Rating(productId, 0.0, 0)));
     }
+
+    // ✅ Add new rating or update existing one
+    @PostMapping
+    public ResponseEntity<Rating> createOrUpdateRating(@RequestBody Rating rating) {
+        Rating saved = ratingRepository.save(rating);
+        return ResponseEntity.ok(saved);
+    }
 }
